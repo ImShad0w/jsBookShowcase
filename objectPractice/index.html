@@ -11,22 +11,20 @@
       <h1>My library</h1>
       <h3>Books added:</h3>
       <div id="library"></div>
-        <dialog id="addBook">
-          <form>
+        <dialog>
             <p>Add a book</p>
             <label for="title">Title...</label>
-            <input type="text" value="title">
+            <input type="text" id="bookTitle">
             <label for="author">Author...</label>
-            <input type="text" value="author">
+            <input type="text" id="bookAuthor">
             <label for="pages">Number of pages...</label>
-            <input type="text" value="pages">
+            <input type="text" id="bookPages">
           <div>
             <button id="confirm">Confirm</button>
             <button id="cancel" value="cancel">Cancel</button>
           </div>
-        </form>
       </dialog>
-     <button>Add a book</button>
+     <button id="addBookBtn">Add a book</button>
     </div>
   </body>
   <script src="script.js"></script>

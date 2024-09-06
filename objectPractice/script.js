@@ -31,3 +31,24 @@ function showcaseLibrary() {
 }
 
 
+const dialog = document.querySelector("dialog")
+const confirmBtn = document.getElementById("confirm")
+const addBookBtn = document.getElementById("addBookBtn")
+const cancelBtn = document.getElementById("cancel")
+
+addBookBtn.addEventListener("click", () => {
+  dialog.showModal();
+})
+confirmBtn.addEventListener("click", () => {
+  let bookTitle = document.getElementById("bookTitle").value;
+  let bookAuthor = document.getElementById("bookAuthor").value;
+  let bookPages = document.getElementById("bookPages").value;
+  addBookToLibrary(bookTitle, bookAuthor, bookPages);
+  dialog.close();
+})
+
+cancelBtn.addEventListener("click", () => {
+  dialog.close();
+})
+
+
