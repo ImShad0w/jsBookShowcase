@@ -24,7 +24,7 @@ function showcaseLibrary() {
       <h2>${book.title}</h2>
       <p><strong>Author:</strong> ${book.author}</p>
       <p><strong>Pages:</strong> ${book.pages}</p>
-      <p><strong>Read:</strong> ${book.read ? 'Yes' : 'No'}</p>
+      <button id="removeBook">Delete book</button>
       `;
     container.appendChild(bookdiv);
   })
