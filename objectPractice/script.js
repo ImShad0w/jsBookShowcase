@@ -24,7 +24,7 @@ function showcaseLibrary() {
       <h2>${book.title}</h2>
       <p><strong>Author:</strong> ${book.author}</p>
       <p><strong>Pages:</strong> ${book.pages}</p>
-      <button id="removeBook">Delete book</button>
+      <button id="removeBook" onclick="deleteBook()">Delete book</button>
       `;
     container.appendChild(bookdiv);
   })
@@ -50,5 +50,10 @@ confirmBtn.addEventListener("click", () => {
 cancelBtn.addEventListener("click", () => {
   dialog.close();
 })
+
+function deleteBook(){
+ myLibrary.pop();
+ showcaseLibrary();
+}
 
 
