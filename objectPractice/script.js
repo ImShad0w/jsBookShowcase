@@ -1,15 +1,17 @@
+
+let bookCount = 0;
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, id) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = read;
+  this.id = id;
 }
 
 
-function addBookToLibrary(title, author, pages, read) {
-  const newBook = new Book(title, author, pages, read)
+function addBookToLibrary(title, author, pages, bookCount) {
+  const newBook = new Book(title, author, pages, bookCount)
   myLibrary.push(newBook);
   showcaseLibrary();
 }
@@ -40,10 +42,11 @@ addBookBtn.addEventListener("click", () => {
   dialog.showModal();
 })
 confirmBtn.addEventListener("click", () => {
+  bookCount++;
   let bookTitle = document.getElementById("bookTitle").value;
   let bookAuthor = document.getElementById("bookAuthor").value;
   let bookPages = document.getElementById("bookPages").value;
-  addBookToLibrary(bookTitle, bookAuthor, bookPages);
+  addBookToLibrary(bookTitle, bookAuthor, bookPages, bookCount);
   dialog.close();
 })
 
@@ -52,8 +55,8 @@ cancelBtn.addEventListener("click", () => {
 })
 
 function deleteBook(){
- myLibrary.pop();
- showcaseLibrary();
+
+  let book = myLibrary.find(i => i.id === bookCount);
+  console.log(book);
+  showcaseLibrary();
 }
-
-
