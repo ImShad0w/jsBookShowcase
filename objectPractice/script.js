@@ -8,7 +8,6 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-
 function addBookToLibrary(title, author, pages, read) {
   const newBook = new Book(title, author, pages, read)
   myLibrary.push(newBook);
@@ -25,21 +24,23 @@ function showcaseLibrary() {
       <h2>${book.title}</h2>
       <p><strong>Author:</strong> ${book.author}</p>
       <p><strong>Pages:</strong> ${book.pages}</p>
+      <button id="read" onclick="toggleRead(${index})">Read</button>
       <button id="removeBook" onclick="deleteBook(${index})">Delete book</button>
       `;//Creates a book DOM object, with the button having the index of the array object
     container.appendChild(bookdiv);
   })
 }
 
-
-const dialog = document.querySelector("dialog")
-const confirmBtn = document.getElementById("confirm")
-const addBookBtn = document.getElementById("addBookBtn")
-const cancelBtn = document.getElementById("cancel")
+const dialog = document.querySelector("dialog");
+const confirmBtn = document.getElementById("confirm");
+const addBookBtn = document.getElementById("addBookBtn");
+const cancelBtn = document.getElementById("cancel");
+const readBtn = document.getElementById("read");
 
 addBookBtn.addEventListener("click", () => {
   dialog.showModal();
 })
+
 confirmBtn.addEventListener("click", () => {
   let bookTitle = document.getElementById("bookTitle").value;
   let bookAuthor = document.getElementById("bookAuthor").value;
@@ -56,4 +57,11 @@ function deleteBook(index){
   //Deletes object from array based on given index
   myLibrary.splice(index, 1)
   showcaseLibrary();
+}
+Book.prototype.toggleRead= function(){
+  this.read= !this.read;
+}
+
+function toggleRead(index){
+  myLibrary[index].toggleRead();
 }
