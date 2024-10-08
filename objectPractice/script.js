@@ -1,17 +1,16 @@
 
-let bookCount = 0;
 const myLibrary = [];
 
-function Book(title, author, pages, id) {
+function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.id = id;
+  this.read = read;
 }
 
 
-function addBookToLibrary(title, author, pages, bookCount) {
-  const newBook = new Book(title, author, pages, bookCount)
+function addBookToLibrary(title, author, pages, read) {
+  const newBook = new Book(title, author, pages, read)
   myLibrary.push(newBook);
   showcaseLibrary();
 }
@@ -19,15 +18,15 @@ function addBookToLibrary(title, author, pages, bookCount) {
 function showcaseLibrary() {
   const container = document.getElementById("library");
   container.innerHTML = "";
-  myLibrary.forEach(book => {
+  myLibrary.forEach((book, index) => {//Loops through the array, adn gets index of the books
     const bookdiv = document.createElement("div");
     bookdiv.classList.add("book");
     bookdiv.innerHTML = `
       <h2>${book.title}</h2>
       <p><strong>Author:</strong> ${book.author}</p>
       <p><strong>Pages:</strong> ${book.pages}</p>
-      <button id="removeBook" onclick="deleteBook()">Delete book</button>
-      `;
+      <button id="removeBook" onclick="deleteBook(${index})">Delete book</button>
+      `;//Creates a book DOM object, with the button having the index of the array object
     container.appendChild(bookdiv);
   })
 }
@@ -42,11 +41,10 @@ addBookBtn.addEventListener("click", () => {
   dialog.showModal();
 })
 confirmBtn.addEventListener("click", () => {
-  bookCount++;
   let bookTitle = document.getElementById("bookTitle").value;
   let bookAuthor = document.getElementById("bookAuthor").value;
   let bookPages = document.getElementById("bookPages").value;
-  addBookToLibrary(bookTitle, bookAuthor, bookPages, bookCount);
+  addBookToLibrary(bookTitle, bookAuthor, bookPages);
   dialog.close();
 })
 
@@ -54,9 +52,8 @@ cancelBtn.addEventListener("click", () => {
   dialog.close();
 })
 
-function deleteBook(){
-
-  let book = myLibrary.find(i => i.id === bookCount);
-  console.log(book);
+function deleteBook(index){
+  //Deletes object from array based on given index
+  myLibrary.splice(index, 1)
   showcaseLibrary();
 }
