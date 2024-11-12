@@ -1,4 +1,3 @@
-
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -24,7 +23,7 @@ function showcaseLibrary() {
       <h2>${book.title}</h2>
       <p><strong>Author:</strong> ${book.author}</p>
       <p><strong>Pages:</strong> ${book.pages}</p>
-      <button id="read" onclick="toggleRead(${index})">Read</button>
+      <button id="read" onclick="toggleRead()">Read</button>
       <button id="removeBook" onclick="deleteBook(${index})">Delete book</button>
       `;//Creates a book DOM object, with the button having the index of the array object
     container.appendChild(bookdiv);
@@ -35,22 +34,24 @@ const dialog = document.querySelector("dialog");
 const confirmBtn = document.getElementById("confirm");
 const addBookBtn = document.getElementById("addBookBtn");
 const cancelBtn = document.getElementById("cancel");
-const readBtn = document.getElementById("read");
 
 addBookBtn.addEventListener("click", () => {
   dialog.showModal();
 })
 
+ //Creates event listener for click, to retrieve data
 confirmBtn.addEventListener("click", () => {
   let bookTitle = document.getElementById("bookTitle").value;
   let bookAuthor = document.getElementById("bookAuthor").value;
   let bookPages = document.getElementById("bookPages").value;
-  addBookToLibrary(bookTitle, bookAuthor, bookPages);
+  let readBtn = document.getElementById("bookRead").checked;
+  addBookToLibrary(bookTitle, bookAuthor, bookPages, readBtn); //Add the values of the newbook to the library
   dialog.close();
 })
 
+//Add event listener to cancel button
 cancelBtn.addEventListener("click", () => {
-  dialog.close();
+  dialog.close(); //Closes dialog window
 })
 
 function deleteBook(index){
@@ -58,10 +59,13 @@ function deleteBook(index){
   myLibrary.splice(index, 1)
   showcaseLibrary();
 }
-Book.prototype.toggleRead= function(){
-  this.read= !this.read;
-}
 
-function toggleRead(index){
-  myLibrary[index].toggleRead();
+Book.prototype.toggleRead = function(){
+  //Checks if the book is read
+  if(this.read != true){
+    this.read = true; // Changes if it's not read
+  }
+  else{
+    this.read = false; // Changes to false if the book was previously read
+  }
 }
