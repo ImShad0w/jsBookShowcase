@@ -6,6 +6,12 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
+Book.prototype.toggleRead = function(index){
+  //Checks if the book is read
+  this.read = !this.read;
+  updateStatus(index);
+  showcaseLibrary();
+}
 
 function addBookToLibrary(title, author, pages, read) {
   const newBook = new Book(title, author, pages, read)
@@ -23,18 +29,25 @@ function showcaseLibrary() {
       <h2>${book.title}</h2>
       <p><strong>Author:</strong> ${book.author}</p>
       <p><strong>Pages:</strong> ${book.pages}</p>
-      <button id="read" onclick="toggleRead()">Read</button>
+      <button class="read" data-index="${index}">${book.read ? 'Mark as Unread' : 'Mark as Read'}</button>
       <button id="removeBook" onclick="deleteBook(${index})">Delete book</button>
       `;//Creates a book DOM object, with the button having the index of the array object
+      
     container.appendChild(bookdiv);
+    //Select read button
+    const readBn = bookdiv.querySelector(".read");
+    readBn.addEventListener("click", () =>{
+      book.toggleRead(index);
+    })
+
   })
 }
+
 
 const dialog = document.querySelector("dialog");
 const confirmBtn = document.getElementById("confirm");
 const addBookBtn = document.getElementById("addBookBtn");
 const cancelBtn = document.getElementById("cancel");
-
 addBookBtn.addEventListener("click", () => {
   dialog.showModal();
 })
@@ -60,12 +73,15 @@ function deleteBook(index){
   showcaseLibrary();
 }
 
-Book.prototype.toggleRead = function(){
-  //Checks if the book is read
-  if(this.read != true){
-    this.read = true; // Changes if it's not read
-  }
-  else{
-    this.read = false; // Changes to false if the book was previously read
+function updateStatus(index) {
+  const book = myLibrary[index]; // Get the book at the specified index
+  const readButton = document.querySelector(`.read[data-index="${index}"]`); // Get the corresponding button
+  
+  if (book.read) {
+    // If the book is read, set background to green
+    readButton.textContent = "Mark as Unread"; // Update button text
+  } else {
+    // If the book is unread, set background to red
+    readButton.textContent = "Mark as Read"; // Update button text
   }
 }
