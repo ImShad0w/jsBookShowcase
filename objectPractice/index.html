@@ -12,19 +12,31 @@
       <h3>Books added:</h3>
       <div id="library"></div>
         <dialog>
-            <p>Add a book</p>
-            <label for="title">Title...</label>
-            <input type="text" id="bookTitle">
-            <label for="author">Author...</label>
-            <input type="text" id="bookAuthor">
-            <label for="pages">Number of pages...</label>
-            <input type="text" id="bookPages">
-            <label for="bookRead">Did you read the book?</label>
+            <h1>Add a book</h1>
+
+        <div class="item">
+            <label for="title">Title</label>
+            <input type="text" id="bookTitle" placeholder="The choosen one">
+        </div>
+
+        <div class="item">
+            <label for="author">Author</label>
+            <input type="text" id="bookAuthor" placeholder="Martin Jr.">
+        </div>
+
+        <div class="item">
+            <label for="pages">Number of pages</label>
+            <input type="number" id="bookPages" placeholder="e.g = 750">
+          </div>
+
+        <div class="checkbox-button">
             <input type="checkbox" name="bookRead" id="bookRead">
-          <div>
+            <label for="bookRead">Did you read it?</label>
+        </div>
+        <div class="buttons">
             <button id="confirm">Confirm</button>
             <button id="cancel" value="cancel">Cancel</button>
-          </div>
+        </div>
       </dialog>
      <button id="addBookBtn">Add a book</button>
     </div>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geologica:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -16,11 +18,14 @@
   4. Improve text rendering
 */
 body {
+  width: 100%;
+  height: 100%;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   --main-clr: #eab595;
   background-color:var(--main-clr);
   color:black;
+  font-family: "Roboto", sans-serif;
 
 }
 /*
@@ -56,7 +61,6 @@ p, h1, h2, h3, h4, h5, h6 {
   gap: 16px;
 }
 
-
 [class^="book"]{
   background-color: white;
   padding: 20px;
@@ -67,3 +71,86 @@ p, h1, h2, h3, h4, h5, h6 {
   display:flex;
 }
 
+dialog{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: auto;
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #C2B97F;
+  box-shadow: 0px 1px 100px 40px rgba(0,0,0,0.32);
+}
+
+.isBlurred{
+  filter: blur(100px);
+}
+
+input{
+  width: 100%;
+  background-color: #f0f0f0;
+}
+
+.item{
+
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+}
+
+.item > input{
+  padding: 10px;
+  height: 50px;
+  border-radius: 20px;
+  border:none;
+}
+
+.buttons{
+  display: flex;
+  gap: 5px;
+}
+
+.buttons > button{
+  width: 50%;
+  height: 50px;
+  font-size: 24px;
+  border: none;
+  border-radius: 10px;
+}
+
+#cancel{
+  color: #fff;
+  background-color: #971919;
+}
+
+
+/* Hidden checkbox */
+.checkbox-button{
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+/* Hide the default checkbox */
+.checkbox-button input[type="checkbox"] {
+    display: none;
+}
+
+/* Style the label to look like a button */
+.checkbox-button label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: red; /* Subtle gray background */
+    color: white; /* Dark gray text for contrast */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Change the button style when the checkbox is checked */
+  .checkbox-button input[type="checkbox"]:checked + label {
+    background-color: green; /* Slightly darker gray when checked */
+    color: #000; /* Darker text for better readability */
+}
