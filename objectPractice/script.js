@@ -60,8 +60,12 @@ confirmBtn.addEventListener("click", () => {
   let bookAuthor = document.getElementById("bookAuthor").value;
   let bookPages = document.getElementById("bookPages").value;
   let readBtn = document.getElementById("bookRead").checked;
-  addBookToLibrary(bookTitle, bookAuthor, bookPages, readBtn); //Add the values of the newbook to the library
-  dialog.close();
+  if (bookTitle == "" || bookAuthor == "" || bookPages == "") {
+    alert("Please fill in all of the form sections!")
+  } else {
+    addBookToLibrary(bookTitle, bookAuthor, bookPages, readBtn);
+    dialog.close();
+  }
 })
 
 //Add event listener to cancel button
@@ -89,3 +93,7 @@ function updateStatus(index) {
     readButton.textContent = "Mark as Read"; // Update button text
   }
 }
+
+//Validation section
+
+
